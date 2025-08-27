@@ -1,0 +1,4 @@
+{"timestamp":"2025-08-27T07:59:57.368548","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-08-27T07:59:57.369283","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/etl_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-08-27T08:02:22.693136Z","level":"info","event":"Extract and load to GCS complete!","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-27T08:02:22.696191","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}

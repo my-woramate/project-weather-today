@@ -11,6 +11,8 @@ from scripts.load import load_gcs_to_bq
 from airflow import DAG
 from airflow.providers.standard.sensors.filesystem import FileSensor
 from airflow.providers.standard.operators.python import PythonOperator
+from airflow.providers.standard.operators.bash import BashOperator
+
 
 default_args = {
     "owner": "etl_pipeline",
@@ -41,4 +43,10 @@ with DAG(
         python_callable=load_gcs_to_bq,
     )
 
-    task_extract_from_api >> task_transform_and_load_cleaned_data_to_gcs >> task_load_gcs_to_bq
+    task_dbt_models = BashOperator(
+    task_id="dbt_models",
+    bash_command="cd /opt/airflow/dbt && dbt run --target dev",
+    )
+
+
+task_extract_from_api >> task_transform_and_load_cleaned_data_to_gcs >> task_load_gcs_to_bq >> task_dbt_models
